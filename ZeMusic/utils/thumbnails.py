@@ -1,4 +1,4 @@
-import asyncio
+port asyncio
 import os
 import random
 import re
@@ -13,9 +13,9 @@ import numpy as np
 from config import YOUTUBE_IMG_URL
 A = "BO"
 B = "T : "
-D = "N"
-E = "O"
-V = "F"
+D = "C"
+E = "M"
+V = "."
 DEV = A+B+D+E+V
 YOUTUBE_IMG = "https://telegra.ph/file/f995c36145125aa44bd37.jpg"
 
@@ -104,7 +104,7 @@ async def get_thumb(videoid):
 
         image4 = ImageDraw.Draw(image2)
         image4.text((20, 10), f" {DEV}", fill="white", font=font1, align="left")
-        image4.text((680, 150), "NOF MUSIC", fill="white", font=font2, stroke_width=2, stroke_fill="white", align="left")
+        image4.text((680, 150), "CM MUSIC", fill="white", font=font2, stroke_width=2, stroke_fill="white", align="left")
         # title
         title1 = truncate(title)
         image4.text((680, 300), text=title1[0], fill="white", stroke_width=1, stroke_fill="white", font=font3, align="left")
@@ -113,7 +113,7 @@ async def get_thumb(videoid):
         # description
         views_text = f"Views : {views}"
         duration_text = f"Duration : {duration} Mins"
-        channel_text = f"Channel : @V_P_1i"
+        channel_text = f"Channel : @Mab_1p"
 
         image4.text((680, 450), text=views_text, fill="white", font=font4, align="left")
         image4.text((680, 500), text=duration_text, fill="white", font=font4, align="left")
