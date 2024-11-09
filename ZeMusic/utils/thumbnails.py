@@ -1,4 +1,4 @@
-port asyncio
+import asyncio
 import os
 import random
 import re
@@ -15,7 +15,7 @@ A = "BO"
 B = "T : "
 D = "C"
 E = "M"
-V = "."
+V = "♡"
 DEV = A+B+D+E+V
 YOUTUBE_IMG = "https://telegra.ph/file/f995c36145125aa44bd37.jpg"
 
