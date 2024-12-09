@@ -1,16 +1,14 @@
 import os
 import re
+import requests
 import config
 import aiohttp
 import aiofiles
-from ZeMusic.platforms.Youtube import cookie_txt_file
-
 import yt_dlp
-from yt_dlp import YoutubeDL
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from youtube_search import YoutubeSearch
-
+from ZeMusic.platforms.Youtube import cookies
 from ZeMusic import app
 from ZeMusic.plugins.play.filters import command
 from ZeMusic.utils.decorators import AdminActual
@@ -19,8 +17,9 @@ from ZeMusic.utils.database import is_search_enabled, enable_search, disable_sea
 def remove_if_exists(path):
     if os.path.exists(path):
         os.remove(path)
-        
-lnk = config.CHANNEL_LINK
+
+      
+lnk = f"https://t.me/{config.CHANNEL_LINK}"
 Nem = config.BOT_NAME + " ابحث"
 
 @app.on_message(command(["song", "/song", "بحث", Nem,"يوت"]) & filters.group)
@@ -67,7 +66,7 @@ async def song_downloader(client, message: Message):
         "geo_bypass": True,
         "outtmpl": f"{title_clean}.%(ext)s",  # استخدام اسم نظيف للملف
         "quiet": True,
-        "cookiefile": cookie_txt_file(),
+        "cookiefile": f"{cookies()}",
     }
 
     try:
@@ -97,26 +96,6 @@ async def song_downloader(client, message: Message):
                 ]
             ),
         )
-
-        try:
-            await app.send_audio(
-                chat_id="@vbbbbnnnm",  # معرف القناة التي تريد الإرسال إليها 
-                audio=audio_file,
-                caption=f"⟡ {app.mention}",
-                title=title,
-                performer=info_dict.get("uploader", "Unknown"),
-                thumb=thumb_name,
-                duration=dur,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(text=config.CHANNEL_NAME, url=lnk),
-                        ],
-                    ]
-                ),
-            )
-        except:
-            pass
         await m.delete()
 
     except Exception as e:
